@@ -133,20 +133,26 @@
       <h2>Storage and retention</h2>
       <p>
         Account and user-generated data is retained while the beta account remains active or while
-        it is needed to operate and secure the service. Submitted feedback is retained while it is
-        needed to review and resolve the report. Some preferences and authentication state
-        are stored locally in Chrome extension storage. When a signed-in user's extension retrieves
-        external comments, it may send them to the Cometitle API. Those comments may be held in
-        server memory for no more than one hour and shown during that period to other users viewing
-        the same title. They disappear earlier if the service restarts and are not stored in
-        PostgreSQL.
+        it is needed to operate and secure the service. A user can schedule account deletion from
+        the extension. The account, public profile, and authored comment content become inaccessible
+        immediately and are retained for a 30-day recovery period; signing in during that period
+        cancels deletion and restores them. After the period ends,
+        account data, comment and reply content, votes and relationships are permanently removed.
+        A content-free placeholder may remain for a deleted top-level comment only when needed to
+        preserve replies written by other users. Submitted feedback is retained while it is needed
+        to review and resolve the report. Some preferences and authentication state are stored
+        locally in Chrome extension storage. When a signed-in user's extension retrieves external
+        comments, it may send them to the Cometitle API. Those comments may be held in server memory
+        for no more than one hour and shown during that period to other users viewing the same title.
+        They disappear earlier if the service restarts and are not stored in PostgreSQL.
       </p>
 
-      <h2>Deletion and access requests</h2>
+      <h2 id="data-requests">Deletion and access requests</h2>
       <p>
-        During the beta, users can request access to or deletion of their Cometitle account
-        and associated personal data by contacting the support email displayed on the Chrome Web
-        Store listing. Requests will be handled after the requester's account ownership is verified.
+        Users can schedule deletion of their Cometitle account and associated personal data from
+        the extension's account screen. The current username is required as confirmation. Users can
+        also email <a href="mailto:cometitleapp@gmail.com?subject=Cometitle%20Data%20Request">cometitleapp@gmail.com</a>
+        for access or deletion requests. Support requests are handled after account ownership is verified.
       </p>
 
       <h2>Security</h2>
@@ -168,11 +174,21 @@
         will be updated when material changes are made.
       </p>
 
-      <h2>Contact</h2>
+      <h2 id="content-removal">External content removal and objections</h2>
       <p>
-        Use the developer support email displayed on the Cometitle Chrome Web Store listing for
-        privacy questions, data requests, or requests and objections concerning an external comment
-        or source.
+        An external comment author or source operator can email
+        <a href="mailto:cometitleapp@gmail.com?subject=Cometitle%20Content%20Removal">cometitleapp@gmail.com</a>
+        with the source name, public page address, and enough information to identify the content.
+        Do not include passwords, Google tokens, or other authentication secrets. Requests are
+        reviewed before the content or source is removed or disabled.
+      </p>
+
+      <h2 id="contact">Contact and support</h2>
+      <p>
+        Email <a href="mailto:cometitleapp@gmail.com?subject=Cometitle%20Support">cometitleapp@gmail.com</a>
+        for privacy questions, data requests, technical support, or requests concerning an external
+        comment or source. Product problems can also be submitted through the extension's feedback
+        screen, which automatically includes limited diagnostics but never passwords or account tokens.
       </p>
     </main>
   </body>
