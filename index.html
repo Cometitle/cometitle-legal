@@ -68,7 +68,7 @@
   <body>
     <main>
       <h1>Cometitle Privacy Policy</h1>
-      <p class="date">Effective date: September 11, 2026</p>
+      <p class="date">Effective date: September 25, 2026</p>
       <p>
         Cometitle is a browser extension that identifies the movie or series page currently
         opened by the user and displays related community comments in an on-page panel. This
@@ -83,6 +83,16 @@
         <li>User-generated content such as comments, replies, spoiler choices and votes.</li>
         <li>Favorites, follows and other profile relationships created by the user.</li>
         <li>Media context needed to identify a title, including its name, TMDB identifier, media type, season and episode.</li>
+        <li>
+          Viewing activity only after the user separately enables activity sharing: the title, TMDB
+          identifier, media type, poster reference and session timestamps. Season, episode,
+          streaming platform and page URL are not included in data shown to friends.
+        </li>
+        <li>
+          Personal viewing history only after the user separately enables history saving: the title,
+          TMDB identifier, media type, optional season and episode, poster reference and session
+          timestamps. Viewing history is visible only to its owner.
+        </li>
         <li>The origin and path of the active media page. Query parameters and fragments are removed before its URL is sent to the Cometitle API.</li>
         <li>Public comments collected from explicitly supported external comment sources, together with the source name, source page URL, public author or nickname, and comment date. Query parameters and fragments are discarded from the source page URL stored in server memory. External profile images are not collected.</li>
         <li>
@@ -106,6 +116,13 @@
         <li>Match the active page with the correct movie or series.</li>
         <li>Display, create and synchronize relevant comments.</li>
         <li>Provide profile, favorite, follow and voting features.</li>
+        <li>
+          Show recent viewing activity to mutual friends only when both users have enabled activity
+          sharing and neither user has blocked the other.
+        </li>
+        <li>
+          Save a private viewing history for the account owner when history saving is enabled.
+        </li>
         <li>Prevent abuse, diagnose failures and operate the beta service.</li>
         <li>Review user feedback, compatibility reports and comment complaints.</li>
       </ul>
@@ -116,12 +133,13 @@
 
       <h2>Service providers</h2>
       <p>
-        Cometitle relies on service providers required to operate the extension, including Google
-        for optional sign-in, Render for API hosting, Neon for PostgreSQL database hosting, TMDB
-        for movie and series metadata, and DiceBear for preset avatar images. The extension also
-        contacts the explicitly supported external comment sources to retrieve public comments for
-        the detected title. These providers and sources process network information according to
-        their own terms and privacy policies.
+        Cometitle relies on service providers required to operate the extension, including cloud
+        API hosting, managed PostgreSQL database hosting, optional Google sign-in, movie and series
+        metadata providers, avatar image providers, and explicitly supported external comment
+        sources. Current core infrastructure providers include Render for API hosting and Neon for
+        PostgreSQL database hosting. The extension also contacts the explicitly supported external
+        comment sources to retrieve public comments for the detected title. These providers and
+        sources process network information according to their own terms and privacy policies.
       </p>
       <p>
         Cometitle's use and transfer of data received from Chrome APIs complies with the Chrome Web
@@ -133,18 +151,26 @@
       <h2>Storage and retention</h2>
       <p>
         Account and user-generated data is retained while the beta account remains active or while
-        it is needed to operate and secure the service. A user can schedule account deletion from
-        the extension. The account, public profile, and authored comment content become inaccessible
-        immediately and are retained for a 30-day recovery period; signing in during that period
-        cancels deletion and restores them. After the period ends,
-        account data, comment and reply content, votes and relationships are permanently removed.
-        A content-free placeholder may remain for a deleted top-level comment only when needed to
-        preserve replies written by other users. Submitted feedback is retained while it is needed
-        to review and resolve the report. Some preferences and authentication state are stored
-        locally in Chrome extension storage. When a signed-in user's extension retrieves external
-        comments, it may send them to the Cometitle API. Those comments may be held in server memory
-        for no more than one hour and shown during that period to other users viewing the same title.
-        They disappear earlier if the service restarts and are not stored in PostgreSQL.
+        it is needed to operate and secure the service. Activity sharing and history saving are
+        separate, disabled-by-default choices. Live activity is refreshed by heartbeats, is treated
+        as current for two minutes, and is not a permanent activity archive. Personal viewing history
+        is limited to the newest 500 sessions and 12 months. Users can delete one history item, all
+        history for a title, or their entire history. Turning off history saving stops new history records but
+        keeps existing records until the user deletes them from the History screen.
+      </p>
+      <p>
+        A user can schedule account deletion from the extension. The account, public profile, and
+        authored comment content become inaccessible immediately and are retained for a 30-day
+        recovery period; signing in during that period cancels deletion and restores them. After the
+        period ends, account data, viewing activity, viewing history, comment and reply content,
+        votes and relationships are permanently removed. A content-free placeholder may remain for a
+        deleted top-level comment only when needed to preserve replies written by other users.
+        Submitted feedback is retained while it is needed to review and resolve the report. Some
+        preferences and authentication state are stored locally in Chrome extension storage. When a
+        signed-in user's extension retrieves external comments, it may send them to the Cometitle
+        API. Those comments may be held in server memory for no more than one hour and shown during
+        that period to other users viewing the same title. They disappear earlier if the service
+        restarts and are not stored in PostgreSQL.
       </p>
 
       <h2 id="data-requests">Deletion and access requests</h2>
